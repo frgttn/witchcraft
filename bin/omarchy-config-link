@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Link all the key config files to witchcraft's internal versions for quicker testing
+ln -nsf ~/.local/share/witchcraft/config/hypr/hyprland.conf ~/.config/hypr/
+ln -nsf ~/.local/share/witchcraft/config/hypr/hypridle.conf ~/.config/hypr/
+ln -nsf ~/.local/share/witchcraft/config/waybar/config ~/.config/waybar/
+ln -nsf ~/.local/share/witchcraft/config/wofi/config ~/.config/wofi/
