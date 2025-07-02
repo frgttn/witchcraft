@@ -12,9 +12,9 @@ for f in ~/.local/share/witchcraft/themes/*; do ln -s "$f" ~/.config/witchcraft/
 
 # Set initial theme
 mkdir -p ~/.config/witchcraft/current
-ln -snf ~/.config/witchcraft/themes/tokyo-night ~/.config/witchcraft/current/theme
-source ~/.local/share/witchcraft/themes/tokyo-night/backgrounds.sh
-ln -snf ~/.config/witchcraft/backgrounds/tokyo-night ~/.config/witchcraft/current/backgrounds
+ln -snf ~/.config/witchcraft/themes/catppuccin ~/.config/witchcraft/current/theme
+source ~/.local/share/witchcraft/themes/catppuccin/backgrounds.sh
+ln -snf ~/.config/witchcraft/backgrounds/catppuccin ~/.config/witchcraft/current/backgrounds
 ln -snf ~/.config/witchcraft/current/backgrounds/1-Pawel-Czerwinski-Abstract-Purple-Blue.jpg ~/.config/witchcraft/current/background
 
 # Set specific app links for current theme
