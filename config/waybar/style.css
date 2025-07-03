@@ -163,7 +163,16 @@ window#waybar {
   margin-bottom: 5px;
   border-radius: 5px;
   padding: 0px 0px 0px 12px;
-  color: #CAD3F5; /* Text color */
+  color: #CAD3F5; 
+}
+
+#custom-logout {
+  background-color: rgba(45, 48, 71, 0.9);
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  padding: 0px 12px 0px 12px;
+  color: #CAD3F5; 
 }
 
 #custom-uptime {
