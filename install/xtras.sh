@@ -25,3 +25,6 @@ echo ":: Flatpak apps installation complete."
 
 # Copy over Witchcraft applications
 source ~/.local/share/witchcraft/bin/witchcraft-sync-applications
+
+# Make swaybg-next an executable.
+chmod +x $HOME/.local/share/witchcraft/bin/* 2>/dev/null
