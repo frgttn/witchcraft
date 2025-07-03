@@ -48,9 +48,7 @@
   },
   "disk": {
     "interval": 1,
-    "format": "<span color=\"#68b0d6\"> </span> {}%",
-    "on-click": "filelight /",
-    "on-click-right": "filelight /home/"
+    "format": "<span color=\"#68b0d6\"> </span> {}%"
   },
   "hyprland/workspaces": {
     "all-outputs": true,
