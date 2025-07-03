@@ -5,8 +5,8 @@ cp -R ~/.local/share/witchcraft/config/* ~/.config/
 echo "source ~/.local/share/witchcraft/default/bash/rc" >~/.bashrc
 
 # Use sddm 
-yay -S --noconfirm --needed sddm
-sudo systemctl enable sddm
+yay -S --noconfirm --needed ly
+sudo systemctl enable ly.service
 
 # Set common git aliases
 git config --global alias.co checkout

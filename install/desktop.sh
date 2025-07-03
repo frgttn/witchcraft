@@ -3,5 +3,4 @@ yay -S --noconfirm --needed \
   fcitx5 fcitx5-gtk fcitx5-qt fcitx5-configtool \
   wl-clip-persist clipse \
   nautilus sushi gnome-calculator \
-  chromium zen-browser-bin vlc \
-  evince imv
+  chromium vlc evince imv
