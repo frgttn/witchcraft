@@ -3,4 +3,5 @@ yay -S --noconfirm --needed \
   eza fzf ripgrep zoxide bat \
   wl-clipboard fastfetch btop \
   man tldr less whois plocate \
-  alacritty bash-completion libfido2
+  alacritty bash-completion \
+  lm_sensors libfido2 
