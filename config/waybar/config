@@ -12,11 +12,10 @@
     "custom/separator",
     "cpu",
     "memory",
+    "disk",
     "temperature",
     "custom/filler",
     "custom/playerctl",
-    "custom/filler",
-    "disk",
     "custom/filler"
   ],
   "modules-center": ["hyprland/workspaces"],
@@ -42,14 +41,14 @@
       "on-click-right": "playerctl next",
       "format-icons": {
         "Playing": "<span foreground='#46c880'>  </span>",
-        "Paused": "<span foreground='#cdd6f4'> 󰏥 </span>",
-      },
+        "Paused": "<span foreground='#cdd6f4'> 󰏥 </span>"
+      }
     },
   "custom/uptime": {
     "format": " {}",
     "interval": 30,
     "exec": "$HOME/.local/bin/upt2",
-    "on-click" : "",
+    "on-click" : ""
   },
   "disk": {
     "interval": 1,
@@ -132,7 +131,7 @@
     "format-disconnected": "",
     "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-    "tooltip-format-disconnected": "Disconnected",
+    "tooltip-format-disconnected": "Disconnected"
   },
 
   "pulseaudio": {
