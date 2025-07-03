@@ -14,21 +14,17 @@
     "memory",
     "disk",
     "temperature",
-    "custom/filler",
-    "custom/playerctl",
-    "custom/filler"
+    "custom/separator",
+    "custom/playerctl"
   ],
   "modules-center": ["hyprland/workspaces"],
   "modules-right": [
     "battery",
-    "custom/dot",
-    "backlight",
-    "pulseaudio",
-    "custom/dot",
     "custom/separator",
+    "pulseaudio",
     "network",
     "bluetooth",
-    "custom/dot",
+    "custom/separator",
     "clock"
   ], 
   "custom/playerctl": {
@@ -91,13 +87,11 @@
   "custom/clock-icon": {
     "format": ""
   },
-
   "clock": {
     "interval": 1,
     "format": "<b>{:%H:%M:%S }</b>",
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
   },
-
   "cpu": {
     "interval": 10,
     "format": " {usage}% ",
@@ -118,12 +112,6 @@
     "format-critical": " {temperatureC}°C",
     "format": " {temperatureC}°C"
   },
-  "backlight": {
-    "device": "amdgpu_bl1",
-    "format": "{icon} {percent} ",
-    "tooltip": false,
-    "format-icons": ["", "", "", "", "", "", "", "", ""]
-  },
   "network": {
     "on-click": "alacritty -e iwctl",
     "format-wifi": "󰒢 {essid}",
@@ -135,11 +123,11 @@
   },
 
   "pulseaudio": {
-    "format": "{icon} <b>{volume}</b>",
+    "format": "{icon} <b> {volume}</b>",
     "format-bluetooth": " {volume}",
     "format-bluetooth-muted": " ",
     "tooltip": false,
-    "format-muted": "",
+    "format-muted": "󰝟",
     "format-icons": {
       "default": ["󰝟", "", "󰕾" , ""]
     },
@@ -163,7 +151,8 @@
     "format": "  "
   },
   "custom/launcher": {
-    "format": " 󰣇"
+    "format": " 󰣇",
+    "on-click": "alacritty -e /bin/sh -c 'fastfetch; read -p \"\"'"
   },
   "custom/separator": {
     "format": " "
