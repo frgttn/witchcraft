@@ -6,6 +6,7 @@ echo "source ~/.local/share/witchcraft/default/bash/rc" >~/.bashrc
 
 # Use sddm 
 yay -S --noconfirm --needed ly
+sudo cp ~/.local/share/witchcraft/config/ly/config.ini /etc/ly/config.ini
 sudo systemctl enable ly.service
 
 # Set common git aliases

@@ -4,4 +4,4 @@ yay -S --noconfirm --needed \
   wl-clipboard fastfetch btop \
   man tldr less whois plocate \
   alacritty bash-completion \
-  lm_sensors libfido2 
+  lm_sensors libfido2
