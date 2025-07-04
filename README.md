@@ -11,7 +11,7 @@ Witchcraft aims to simplify the initial setup, removing the need to write bespok
 To start the installation, run the following command:
 
 ```sh
-wget -qO- https://raw.githubusercontent.com/frgttn/witchcraft/refs/heads/master/boot.sh
+wget -qO- https://raw.githubusercontent.com/frgttn/witchcraft/refs/heads/master/boot.sh | bash
 ```
 
 ---
