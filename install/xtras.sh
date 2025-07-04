@@ -16,6 +16,7 @@ flatpak_packages=(
   com.discordapp.Discord
   app.zen_browser.zen
   com.bitwarden.desktop
+  org.localsend.localsend_app
 )
 
 echo ":: Installing Flatpak Application: ${flatpak_packages[*]}..."
