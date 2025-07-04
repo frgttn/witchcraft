@@ -6,6 +6,16 @@ Witchcraft aims to simplify the initial setup, removing the need to write bespok
 
 ---
 
+## How to run installer script
+
+To start the installation, run the following command:
+
+```sh
+wget -qO- https://raw.githubusercontent.com/frgttn/witchcraft/refs/heads/master/boot.sh
+```
+
+---
+
 ## License
 
 Witchcraft is released under the [MIT License](https://opensource.org/licenses/MIT).
