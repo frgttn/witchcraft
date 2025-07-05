@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+
+# Define the step size for brightness adjustments (e.g., 5% increment/decrement)
+BRIGHTNESS_STEP=5
+
+# ---
+# Function to display a notification with the current brightness level
+# ---
+function notify_brightness() {
+  # Get the current brightness information from ddcutil for VCP code 10 (Brightness)
+  # We grep for "current value" to isolate the relevant line
+  CURRENT_BRIGHTNESS_INFO=$(ddcutil getvcp 10 | grep "current value")
+
+  # Check if ddcutil returned any brightness information
+  if [[ -z "$CURRENT_BRIGHTNESS_INFO" ]]; then
+    # Dismiss any existing Mako notifications
+    makoctl dismiss --all
+    # Send an error notification if brightness info couldn't be retrieved
+    notify-send "Error: Could not get brightness from ddcutil. Is your monitor connected and supported?"
+    exit 1 # Exit the script with an error code
+  fi
+
+  # Extract the brightness percentage from the ddcutil output.
+  # First awk splits by "current value = " and takes the second part.
+  # Second awk splits by "," and takes the first part (the number).
+  BRIGHTNESS_PERCENT=$(echo "$CURRENT_BRIGHTNESS_INFO" | awk -F'current value = *' '{print $2}' | awk -F',' '{print $1}')
+
+  # Dismiss any existing Mako notifications to prevent clutter
+  makoctl dismiss --all
+  # Send a notification showing the current brightness percentage.
+  # -a "brightness" sets the app name for Mako.
+  # -t 3000 sets the timeout to 3000 milliseconds (3 seconds).
+  # -h string:x-canonical-private-synchronous:brightness ensures only one brightness notification is shown at a time.
+  notify-send "Brightness: ${BRIGHTNESS_PERCENT}%" -a "brightness" -t 3000 -h string:x-canonical-private-synchronous:brightness
+}
+
+# ---
+# Script execution starts here
+# ---
+
+# Check if exactly one argument is provided and if it's either "inc" (increment) or "dec" (decrement)
+if [[ "$#" != 1 || ! ("$1" == "inc" || "$1" == "dec") ]]; then
+    # If not, print usage instructions to standard error
+    printf "Usage: %s [inc|dec]\n" "$0" >&2
+    exit 1 # Exit with an error code
+fi
+
+# ---
+# Dependency checks: Ensure required commands are installed
+# ---
+
+# Check if 'ddcutil' command is available
+if ! command -v ddcutil &> /dev/null; then
+  echo "Error: ddcutil is not installed. Please install it." >&2
+  exit 1
+fi
+
+# Check if 'makoctl' command is available (for Mako notification daemon)
+if ! command -v makoctl &> /dev/null; then
+  echo "Error: mako is not installed. Please install it." >&2
+  exit 1
+fi
+
+# Check if 'notify-send' command is available (for sending notifications)
+if ! command -v notify-send &> /dev/null; then
+  echo "Error: notify-send is not installed. Please install it." >&2
+  exit 1
+fi
+
+# ---
+# Adjust brightness based on the provided argument
+# ---
+
+# If the argument is "inc" (increment brightness)
+if [[ "$1" == "inc" ]]; then
+  # Increase brightness using ddcutil.
+  # 'setvcp 10' targets the Brightness VCP code.
+  # '-- + $BRIGHTNESS_STEP' tells ddcutil to add BRIGHTNESS_STEP to the current value.
+  # '> /dev/null' redirects standard output to null, suppressing command output.
+  ddcutil setvcp 10 -- + "$BRIGHTNESS_STEP" > /dev/null
+  notify_brightness # Call the function to display current brightness
+elif [[ "$1" == "dec" ]]; then # If the argument is "dec" (decrement brightness)
+  # Decrease brightness using ddcutil.
+  # '-- - $BRIGHTNESS_STEP' tells ddcutil to subtract BRIGHTNESS_STEP from the current value.
+  ddcutil setvcp 10 -- - "$BRIGHTNESS_STEP" > /dev/null
+  notify_brightness # Call the function to display current brightness
+fi
