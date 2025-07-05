@@ -31,6 +31,7 @@
     "clock",
     "custom/separator",
     "custom/dnd",
+    "power-profiles-daemon",
     "battery",
     "custom/logout"
   ],
@@ -158,6 +159,16 @@
       ""
     ],
     "max-length": 25
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}",
+    "tooltip": true,
+    "format-icons": {
+      "power-saver": "󰡳",
+      "balanced": "󰊚",
+      "performance": "󰡴"
+    }
   },
   "custom/logout": {
     "format": "󰐥",
