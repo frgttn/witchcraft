@@ -165,6 +165,15 @@ window#waybar {
   color: #cad3f5;
 }
 
+#custom-dnd {
+  background-color: rgba(45, 48, 71, 0.9);
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  padding: 0px 12px 0px 12px;
+  color: #cad3f5;
+}
+
 #tray {
   background-color: rgba(45, 48, 71, 0.9);
   margin-top: 5px;

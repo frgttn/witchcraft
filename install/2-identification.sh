@@ -1,5 +1,5 @@
 # Need gum to query for input
-yay -S --noconfirm --needed gum
+paru -S --noconfirm --needed gum
 
 # Configure identification
 if [[ -z "${WITCHCRAFT_USER_NAME//[[:space:]]/}${WITCHCRAFT_USER_EMAIL//[[:space:]]/}" ]]; then

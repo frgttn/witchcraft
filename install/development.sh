@@ -1,3 +1,3 @@
-yay -S --noconfirm --needed \
+paru -S --noconfirm --needed \
   cargo clang llvm mise \
   lazygit lazydocker-bin
