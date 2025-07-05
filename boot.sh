@@ -12,7 +12,7 @@ pacman -Q git &>/dev/null || sudo pacman -Sy --noconfirm --needed git
 
 echo -e "\nCloning Witchcraft..."
 rm -rf ~/.local/share/witchcraft/
-git clone -b master https://github.com/frgttn/witchcraft.git ~/.local/share/witchcraft >/dev/null
+git clone https://github.com/frgttn/witchcraft.git ~/.local/share/witchcraft >/dev/null
 
 # Use custom branch if instructed
 if [[ -n "$WITCHCRAFT_REF" ]]; then
