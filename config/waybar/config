@@ -21,7 +21,6 @@
     "hyprland/workspaces"
   ],
   "modules-right": [
-    "battery",
     "custom/separator",
     "pulseaudio",
     "network",
@@ -32,6 +31,7 @@
     "clock",
     "custom/separator",
     "custom/dnd",
+    "battery",
     "custom/logout"
   ],
   "custom/playerctl": {
@@ -144,28 +144,20 @@
     "on-click-right": "pavucontrol"
   },
   "battery": {
-    "bat": "BAT0",
-    "interval": 10,
+    "interval": 60,
     "states": {
       "warning": 30,
       "critical": 15
     },
-    "format": " {icon} {capacity}%",
-    "format-charging": "󰂄 {capacity}%",
+    "format": "{capacity}%",
     "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      ""
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
-    "max-length": 25,
-    "tooltip": false
+    "max-length": 25
   },
   "custom/logout": {
     "format": "󰐥",
