@@ -1,10 +1,13 @@
 # Copy over Witchcraft configs
 cp -R ~/.local/share/witchcraft/config/* ~/.config/
 
+# Ensure application directory exists for update-desktop-database
+mkdir -p ~/.local/share/applications
+
 # Use default bashrc from Witchcraft
 echo "source ~/.local/share/witchcraft/default/bash/rc" >~/.bashrc
 
-# Use sddm 
+# Use ly 
 yay -S --noconfirm --needed ly
 sudo cp ~/.local/share/witchcraft/config/ly/config.ini /etc/ly/config.ini
 sudo systemctl enable ly.service
