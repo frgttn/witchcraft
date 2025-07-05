@@ -1,28 +1,16 @@
-echo ":: Installing Flatpak..."
-paru -S --noconfirm --needed flatpak
+paru -S --noconfirm --needed \
+  flatpak discord telegram-desktop spotify bitwarden zoom \
+  obsidian-bin onlyoffice-bin obs-studio kdenlive \
+  zen-browser-bin localsend-bin
 
-echo ":: Adding a Flathub Repository..."
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 flatpak_packages=(
-  com.spotify.Client
-  us.zoom.Zoom
-  md.obsidian.Obsidian
-  com.obsproject.Studio
-  org.onlyoffice.desktopeditors
   com.github.tchx84.Flatseal
-  org.telegram.desktop
   com.valvesoftware.Steam
-  com.discordapp.Discord
-  app.zen_browser.zen
-  com.bitwarden.desktop
-  org.localsend.localsend_app
 )
 
-echo ":: Installing Flatpak Application: ${flatpak_packages[*]}..."
 flatpak install -y --noninteractive flathub "${flatpak_packages[@]}"
-
-echo ":: Flatpak apps installation complete."
 
 # Copy over Witchcraft applications
 source ~/.local/share/witchcraft/bin/witchcraft-sync-applications || true
