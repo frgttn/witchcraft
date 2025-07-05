@@ -20,7 +20,6 @@ ln -snf ~/.config/witchcraft/current/backgrounds/1-Pawel-Czerwinski-Abstract-Pur
 # Set specific app links for current theme
 ln -snf ~/.config/witchcraft/current/theme/hyprlock.conf ~/.config/hypr/hyprlock.conf
 ln -snf ~/.config/witchcraft/current/theme/wofi.css ~/.config/wofi/style.css
-ln -snf ~/.config/witchcraft/current/theme/neovim.lua ~/.config/nvim/lua/plugins/theme.lua
 mkdir -p ~/.config/btop/themes
 ln -snf ~/.config/witchcraft/current/theme/btop.theme ~/.config/btop/themes/current.theme
 mkdir -p ~/.config/mako

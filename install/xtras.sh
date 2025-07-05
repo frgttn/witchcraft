@@ -1,5 +1,5 @@
 echo ":: Installing Flatpak..."
-yay -S --noconfirm --needed flatpak
+paru -S --noconfirm --needed flatpak
 
 echo ":: Adding a Flathub Repository..."
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
