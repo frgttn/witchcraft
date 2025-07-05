@@ -1,53 +1,56 @@
 #!/bin/bash
+
+# Define modifier flags as associative array for name lookup
+# per https://github.com/hyprwm/Hyprland/blob/main/src/devices/IKeyboard.hpp#L13-L22
+declare -A MODIFIER_NAMES=(
+    [$((1 << 0))]="SHIFT"
+    [$((1 << 1))]="CAPS"
+    [$((1 << 2))]="CTRL"
+    [$((1 << 3))]="ALT"
+    [$((1 << 4))]="MOD2"
+    [$((1 << 5))]="MOD3"
+    [$((1 << 6))]="SUPER"
+    [$((1 << 7))]="MOD5"
+)
+
+decode_modmask() {
+    local modifiers=$1
+    local result=()
+
+    for bit in "${!MODIFIER_NAMES[@]}"; do
+        if (( modifiers & bit )); then
+            result+=("${MODIFIER_NAMES[$bit]}")
+        fi
+    done
+
+    # Output all detected modifiers (plus-separated)
+    echo "${result[*]}"
+}
+
+# Read live keybinds, not config file
+OLD_IFS=$IFS
+IFS=$'\n'
+readarray -t KEYBINDS < <(hyprctl -j binds | jq -cr '.[]')
+IFS=$OLD_IFS
+
+# Loop over each keybind and pipe results to wofi for inspection/execution
+# Format to send to wofi:
 #
-# A script to display Hyprland keybindings defined in your configuration
-# using wofi for an interactive search menu.
+# <dispatcher> -- <arg> #<Modifier Keys> <Key> - <Description> via <arg>
+# exec -- ghostty #SUPER return - Launch a Terminal via ghostty
+# or
+# exit -- #SUPER+ALT ESCAPE - Logout
 #
-
-# --- CONFIGURATION ---
-# Set the path to your keybindings file.
-# The script will check keybindings in 'hyprland.conf'.
-HYPRLAND_CONF="$HOME/.config/hypr/hyprland.conf"
-
-# --- SCRIPT LOGIC ---
-
-# Determine which configuration file to use
-if [ -f "$HYPRLAND_CONF" ]; then
-  CONFIG_FILE="$HYPRLAND_CONF"
-else
-  # If no config file is found, show an error in wofi and exit
-  echo "Error: Configuration file not found." | wofi -dmenu -p "Hyprland Error"
-  exit 1
-fi
-
-# Process the configuration file to extract and format keybindings
-# 1. `grep` finds all lines starting with 'bind' (allowing for leading spaces).
-# 2. The first `sed` removes comments (anything after a '#').
-# 3. `awk` does the heavy lifting of formatting the output.
-#    - It sets the field separator to a comma ','.
-#    - It removes the 'bind... =' part from the beginning of the line.
-#    - It joins the key combination (e.g., "SUPER + Q").
-#    - It joins the command that the key executes.
-#    - It prints everything in a nicely aligned format.
-# 4. The final `sed` cleans up any leftover commas from the end of lines.
-grep '^[[:space:]]*bind' "$CONFIG_FILE" |
-  sed 's/\#.*//' |
-  awk -F, '{
-        # Remove the "bind... =" part and any surrounding whitespace
-        sub(/^[[:space:]]*bind[^=]*=[[:space:]]*/, "", $1);
-        # Combine the modifier and key (first two fields)
-        key_combo = $1 " + " $2;
-        gsub(/^[ \t]+|[ \t]+$/, "", key_combo); # Trim whitespace
-        # Reconstruct the command from the remaining fields
-        action = "";
-        for (i = 3; i <= NF; i++) {
-            action = action $i (i < NF ? "," : "");
-        }
-        gsub(/^[ \t]+|[ \t]+$/, "", action); # Trim whitespace
-        # Print only if an action exists
-        if (action != "") {
-            printf "%-35s → %s\n", key_combo, action;
-        }
-    }' |
-  sed 's/,$//' |
-  flock --nonblock /tmp/.wofi.lock -c "wofi -dmenu -i --width 60% --height 70% -p 'Hyprland Keybindings'"
+# Wofi's pre-display-cmd looks for the '#' and prints everything after it
+# in the wofi window. When we pipe that to `xargs hyprctl dispatch`, the
+# Comment character ensures we ignore the description text and only executes
+# the dispatcher + arg.
+for keyconfig in "${KEYBINDS[@]}"; do
+    # Use pipe '|' to delimit results
+    IFS="|" read modmask key keycode description dispatcher arg < <(echo $(echo "$keyconfig" | jq -r '[.modmask, .key, .keycode, .description, .dispatcher, .arg] | join("|")'))
+    keys=($(decode_modmask $modmask) $key)
+    IFS="+"
+    combo=$(echo "${keys[*]}")
+    IFS=$OLD_IFS
+    echo "$dispatcher -- $arg #$combo → $description ($dispatcher $arg)"
+done | flock --nonblock /tmp/.wofi.lock -c "wofi --width 60% --height 70% -d -i -p 'Hyprland Keybindings' -0 alphabetical --pre-display-cmd \"echo '%s' | cut -d'#' -f2\" | xargs hyprctl dispatch"
