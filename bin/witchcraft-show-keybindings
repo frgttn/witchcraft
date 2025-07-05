@@ -52,5 +52,5 @@ for keyconfig in "${KEYBINDS[@]}"; do
     IFS="+"
     combo=$(echo "${keys[*]}")
     IFS=$OLD_IFS
-    echo "$dispatcher -- $arg #$combo → $description ($dispatcher $arg)"
+    echo "$dispatcher -- $arg #$combo → $description"
 done | flock --nonblock /tmp/.wofi.lock -c "wofi --width 60% --height 70% -d -i -p 'Hyprland Keybindings' -0 alphabetical --pre-display-cmd \"echo '%s' | cut -d'#' -f2\" | xargs hyprctl dispatch"
