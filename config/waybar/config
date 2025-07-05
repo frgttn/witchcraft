@@ -1,4 +1,4 @@
-{ 
+{
   "include": "~/.config/waybar/configs/custom_modules/modules",
   "layer": "top",
   "height": 35,
@@ -17,7 +17,9 @@
     "custom/separator",
     "custom/playerctl"
   ],
-  "modules-center": ["hyprland/workspaces"],
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
   "modules-right": [
     "battery",
     "custom/separator",
@@ -27,26 +29,28 @@
     "custom/separator",
     "clock",
     "custom/separator",
+    "custom/dnd",
+    "custom/separator",
     "custom/logout"
-  ], 
+  ],
   "custom/playerctl": {
-      "format": "[<span foreground='#46c880'>  </span> <span>{}</span> ]",
-      "return-type": "json",
-      "max-length": 55,
-      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{title}}\"}' -F",
-      "on-click": "playerctl play-pause",
-      "on-click-middle": "playerctl previous",
-      "on-click-right": "playerctl next",
-      "format-icons": {
-        "Playing": "<span foreground='#46c880'>  </span>",
-        "Paused": "<span foreground='#cdd6f4'> 󰏥 </span>"
-      }
-    },
+    "format": "[<span foreground='#46c880'>  </span> <span>{}</span> ]",
+    "return-type": "json",
+    "max-length": 55,
+    "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{title}}\"}' -F",
+    "on-click": "playerctl play-pause",
+    "on-click-middle": "playerctl previous",
+    "on-click-right": "playerctl next",
+    "format-icons": {
+      "Playing": "<span foreground='#46c880'>  </span>",
+      "Paused": "<span foreground='#cdd6f4'> 󰏥 </span>"
+    }
+  },
   "custom/uptime": {
     "format": " {}",
     "interval": 30,
     "exec": "$HOME/.local/bin/upt2",
-    "on-click" : ""
+    "on-click": ""
   },
   "disk": {
     "interval": 1,
@@ -79,20 +83,6 @@
   "tray": {
     "icon-size": 20,
     "spacing": 8
-  },
-  "custom/filler": {
-    "format": " "
-  },
-  "custom/dot": {
-    "format": " "
-  },
-  "custom/clock-icon": {
-    "format": ""
-  },
-  "custom/logout": {
-    "format": "󰐥",
-    "on-click": "wlogout",
-    "tooltip": "Log out"
   },
   "clock": {
     "interval": 1,
@@ -128,7 +118,13 @@
     "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-disconnected": "Disconnected"
   },
-
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "󰂲",
+    "format-connected": "",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "on-click": "GTK_THEME=Adwaita-dark blueberry"
+  },
   "pulseaudio": {
     "format": "{icon} <b> {volume}</b>",
     "format-bluetooth": " {volume}",
@@ -136,7 +132,12 @@
     "tooltip": false,
     "format-muted": "󰝟",
     "format-icons": {
-      "default": ["󰝟", "", "󰕾" , ""]
+      "default": [
+        "󰝟",
+        "",
+        "󰕾",
+        ""
+      ]
     },
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "pavucontrol"
@@ -150,40 +151,66 @@
     },
     "format": " {icon} {capacity}%",
     "format-charging": "󰂄 {capacity}%",
-    "format-icons": ["", "", "", "", "", "", "", "", "", ""],
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
     "max-length": 25,
     "tooltip": false
   },
-  "custom/right-arr": {
-    "format": "  "
+  "custom/logout": {
+    "format": "󰐥",
+    "on-click": "wlogout",
+    "tooltip": "Log out"
+  },
+  "custom/dnd": {
+    "exec": "makoctl mode | grep -q 'do-not-disturb' && echo '{\"alt\":\"dnd\",\"tooltip\":\"Enable notifications\"}' || echo '{\"alt\":\"on\",\"tooltip\":\"Disable notifications\"}'",
+    "format": "{icon}",
+    "format-icons": {
+      "on": " 󰂚",
+      "dnd": "󰂛"
+    },
+    "return-type": "json",
+    "interval": 5,
+    "tooltip": "{tooltip}",
+    "on-click": "makoctl mode -t do-not-disturb"
   },
   "custom/launcher": {
     "format": " 󰣇",
     "on-click": "alacritty -e /bin/sh -c 'fastfetch; read -p \"\"'"
-  },
-  "custom/separator": {
-    "format": " "
   },
   "custom/window-name": {
     "format": " <b>{}</b>",
     "interval": 1,
     "exec": "hyprctl activewindow | grep class | awk '{print $2}'"
   },
-
-  "bluetooth": {
-      "format": "",
-      "format-disabled": "󰂲",
-      "format-connected": "",
-      "tooltip-format": "Devices connected: {num_connections}",
-      "on-click": "GTK_THEME=Adwaita-dark blueberry"
+  "custom/separator": {
+    "format": " "
   },
-
+  "custom/right-arr": {
+    "format": "  "
+  },
+  "custom/filler": {
+    "format": " "
+  },
+  "custom/dot": {
+    "format": " "
+  },
+  "custom/clock-icon": {
+    "format": ""
+  },
   "custom/window-icon": {},
-
   "custom/wrap-left": {
     "format": "<b>[</b>"
   },
-
   "custom/wrap-right": {
     "format": "<b>]</b>"
   }

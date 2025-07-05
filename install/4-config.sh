@@ -8,7 +8,7 @@ mkdir -p ~/.local/share/applications
 echo "source ~/.local/share/witchcraft/default/bash/rc" >~/.bashrc
 
 # Use ly 
-yay -S --noconfirm --needed ly
+paru -S --noconfirm --needed ly
 sudo cp ~/.local/share/witchcraft/config/ly/config.ini /etc/ly/config.ini
 sudo systemctl enable ly.service
 
