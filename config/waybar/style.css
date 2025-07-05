@@ -174,11 +174,29 @@ window#waybar {
   color: #cad3f5;
 }
 
-#custom-logout {
+#tray {
   background-color: rgba(45, 48, 71, 0.9);
   margin-top: 5px;
   margin-bottom: 5px;
   border-radius: 5px;
+  padding: 0px 12px 0px 12px;
+  color: #cad3f5;
+}
+
+#custom-dnd {
+  background-color: rgba(45, 48, 71, 0.9);
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px 0 0 5px;
+  padding: 0px 12px 0px 12px;
+  color: #cad3f5;
+}
+
+#custom-logout {
+  background-color: rgba(45, 48, 71, 0.9);
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 0 5px 5px 0;
   padding: 0px 12px 0px 12px;
   color: #cad3f5;
 }

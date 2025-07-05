@@ -27,10 +27,11 @@
     "network",
     "bluetooth",
     "custom/separator",
+    "tray",
+    "custom/separator",
     "clock",
     "custom/separator",
     "custom/dnd",
-    "custom/separator",
     "custom/logout"
   ],
   "custom/playerctl": {
@@ -81,8 +82,8 @@
     }
   },
   "tray": {
-    "icon-size": 20,
-    "spacing": 8
+    "icon-size": 16,
+    "spacing": 12
   },
   "clock": {
     "interval": 1,
@@ -126,7 +127,7 @@
     "on-click": "GTK_THEME=Adwaita-dark blueberry"
   },
   "pulseaudio": {
-    "format": "{icon} <b> {volume}</b>",
+    "format": "{icon} <b>{volume}</b>",
     "format-bluetooth": " {volume}",
     "format-bluetooth-muted": " ",
     "tooltip": false,
