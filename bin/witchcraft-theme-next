@@ -29,7 +29,6 @@ NEW_THEME=${THEMES[$NEXT_INDEX]}
 NEW_THEME_NAME=$(basename "$NEW_THEME")
 
 # Set current theme
-ln -nsf "$HOME/.config/witchcraft/backgrounds/$NEW_THEME_NAME" "$HOME/.config/witchcraft/current/backgrounds"
 ln -nsf "$NEW_THEME" "$HOME/.config/witchcraft/current/theme"
 
 # Touch alacritty config to pickup the changed theme
@@ -42,11 +41,6 @@ bat cache --build
 pkill -SIGUSR2 waybar
 makoctl reload
 hyprctl reload
-
-# Set new background
-ln -nsf $(find "$HOME/.config/witchcraft/current/backgrounds/" -type f | head -n 1) "$HOME/.config/witchcraft/current/background"
-pkill -x swaybg
-setsid swaybg -i "$HOME/.config/witchcraft/current/background" -m fill &
 
 # Notify of the new theme
 notify-send "Theme changed to $NEW_THEME_NAME" -t 2000

@@ -13,9 +13,9 @@ for f in ~/.local/share/witchcraft/themes/*; do ln -s "$f" ~/.config/witchcraft/
 # Set initial theme
 mkdir -p ~/.config/witchcraft/current
 ln -snf ~/.config/witchcraft/themes/catppuccin ~/.config/witchcraft/current/theme
-source ~/.local/share/witchcraft/themes/catppuccin/backgrounds.sh
-ln -snf ~/.config/witchcraft/backgrounds/catppuccin ~/.config/witchcraft/current/backgrounds
-ln -snf ~/.config/witchcraft/current/backgrounds/1-Pawel-Czerwinski-Abstract-Purple-Blue.jpg ~/.config/witchcraft/current/background
+
+# Set initial wallpaper
+ln -snf ~/.local/share/witchcraft/backgrounds/1.png ~/.config/witchcraft/current/background
 
 # Set specific app links for current theme
 ln -snf ~/.config/witchcraft/current/theme/hyprlock.conf ~/.config/hypr/hyprlock.conf
