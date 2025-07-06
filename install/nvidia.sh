@@ -77,6 +77,7 @@ if [ -n "$gpu_info" ]; then
 # NVIDIA environment variables
 env = NVD_BACKEND,direct
 env = LIBVA_DRIVER_NAME,nvidia
+env = GBM_BACKEND,nvidia-drm
 env = __GLX_VENDOR_LIBRARY_NAME,nvidia
 EOF
   fi
