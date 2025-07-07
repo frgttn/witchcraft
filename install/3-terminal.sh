@@ -3,5 +3,5 @@ paru -S --noconfirm --needed \
   fd eza fzf ripgrep zoxide bat \
   wl-clipboard fastfetch btop \
   man tldr less whois plocate jq \
-  alacritty bash-completion \
+  alacritty bash-completion impala \
   lm_sensors libfido2
