@@ -112,7 +112,7 @@
     "format": " {temperatureC}°C"
   },
   "network": {
-    "on-click": "alacritty -e impala",
+    "on-click": "alacritty --class=Impala -e impala",
     "format-wifi": "󰒢 {essid}",
     "format-ethernet": " wired",
     "format-disconnected": "",
