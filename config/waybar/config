@@ -7,6 +7,7 @@
   "margin-bottom": 0,
   "margin-right": 10,
   "spacing": 0,
+  "reload_style_on_change": true,
   "modules-left": [
     "custom/launcher",
     "custom/separator",
@@ -172,7 +173,7 @@
   },
   "custom/logout": {
     "format": "󰐥",
-    "on-click": "wlogout",
+    "on-click": "wlogout -b 5 -B 400 -T 400",
     "tooltip": "Log out"
   },
   "custom/dnd": {

@@ -16,6 +16,7 @@ ln -snf ~/.config/witchcraft/themes/catppuccin ~/.config/witchcraft/current/them
 
 # Set initial wallpaper
 ln -snf ~/.local/share/witchcraft/backgrounds/1.png ~/.config/witchcraft/current/background
+wal -i ~/.config/witchcraft/current/background
 
 # Copy cursors
 cp -r ~/.local/share/witchcraft/cursors ~/.local/share/icons/
