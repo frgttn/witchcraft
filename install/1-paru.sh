@@ -9,3 +9,4 @@ if ! command -v yay &>/dev/null; then
   cd -
   rm -rf paru
   cd ~
+fi
