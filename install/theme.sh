@@ -16,7 +16,6 @@ ln -snf ~/.config/witchcraft/themes/catppuccin ~/.config/witchcraft/current/them
 
 # Set initial wallpaper
 ln -snf ~/.local/share/witchcraft/backgrounds/1.png ~/.config/witchcraft/current/background
-ln -nsf ~/.local/share/witchcraft/backgrounds/1.png ~/.config/hypr/current_hyprlock_background.jpg
 wal -i ~/.config/witchcraft/current/background
 
 # Copy cursors

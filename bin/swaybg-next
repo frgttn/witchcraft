@@ -4,7 +4,6 @@
 
 BACKGROUNDS_DIR="$HOME/.local/share/witchcraft/backgrounds/"
 CURRENT_BACKGROUND_LINK="$HOME/.config/witchcraft/current/background"
-HYPRLOCK_BACKGROUND_LINK="$HOME/.config/hypr/current_hyprlock_background.jpg"
 
 BACKGROUNDS=($(find "$BACKGROUNDS_DIR" -type f | sort))
 TOTAL=${#BACKGROUNDS[@]}
@@ -32,9 +31,6 @@ NEW_BACKGROUND=${BACKGROUNDS[$NEXT_INDEX]}
 
 # Set new background symlink for swaybg
 ln -nsf "$NEW_BACKGROUND" "$CURRENT_BACKGROUND_LINK"
-
-# Set new background symlink for hyprlock
-ln -nsf "$NEW_BACKGROUND" "$HYPRLOCK_BACKGROUND_LINK"
 
 # Relaunch swaybg
 pkill -x swaybg
