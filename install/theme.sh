@@ -47,7 +47,7 @@ fi
 
 . "${HOME}/.cache/wal/colors.sh"
 
-MAKO_CONFIG="${HOME}/.config/mako/config"
+MAKO_CONFIG="${HOME}/.config/mako/config.ini"
 
 # Associative array, color name -> color code.
 declare -A colors
