@@ -1,6 +1,6 @@
 paru -S --noconfirm --needed \
   hyprland hyprshot hyprpicker hyprlock hypridle hyprpolkitagent hyprland-qtutils \
-  wofi waybar mako swaybg wlogout python-pywal \
+  wofi waybar mako swaybg wlogout python-pywal16 \
   xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
 
 # Start Hyprland on first session

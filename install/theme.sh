@@ -22,15 +22,12 @@ wal -i ~/.config/witchcraft/current/background -t -s
 cp -r ~/.local/share/witchcraft/cursors ~/.local/share/icons/
 
 # Set specific app links for current theme
-mkdir -p ~/.config/btop/themes
-ln -snf ~/.config/witchcraft/current/theme/btop.theme ~/.config/btop/themes/current.theme
+# mkdir -p ~/.config/btop/themes
+# ln -snf ~/.config/witchcraft/current/theme/btop.theme ~/.config/btop/themes/current.theme
 
-mkdir -p ~/.config/mako
-ln -snf ~/.config/witchcraft/current/theme/mako.ini ~/.config/mako/config
-
-mkdir -p ~/.config/bat/themes
-ln -snf ~/.config/witchcraft/current/theme/bat.tmTheme ~/.config/bat/themes/current.tmTheme
-bat cache --build
+# mkdir -p ~/.config/bat/themes
+# ln -snf ~/.config/witchcraft/current/theme/bat.tmTheme ~/.config/bat/themes/current.tmTheme
+# bat cache --build
 
 # Set import for wofi style
 WOFI_STYLE_FILE="$HOME/.config/wofi/style.css"
@@ -47,3 +44,22 @@ else
     mv "${WOFI_STYLE_FILE}.tmp" "$WOFI_STYLE_FILE"
     echo "Import line added to the beginning of $WOFI_STYLE_FILE."
 fi
+
+. "${HOME}/.cache/wal/colors.sh"
+
+MAKO_CONFIG="${HOME}/.config/mako/config"
+
+# Associative array, color name -> color code.
+declare -A colors
+colors=(
+    ["background-color"]="${background}89"
+    ["text-color"]="$foreground"
+    ["border-color"]="$color13"
+)
+
+for color_name in "${!colors[@]}"; do
+  # replace first occurance of each color in config file
+  sed -i "0,/^$color_name.*/{s//$color_name=${colors[$color_name]}/}" $MAKO_CONFIG
+done
+
+makoctl reload
