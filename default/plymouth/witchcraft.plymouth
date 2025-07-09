@@ -1,0 +1,11 @@
+[Plymouth Theme]
+Name=Witchcraft
+Description=Witchcraft splash screen.
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/witchcraft
+ScriptFile=/usr/share/plymouth/themes/witchcraft/witchcraft.script
+ConsoleLogBackgroundColor=0x1a1b26
+
+

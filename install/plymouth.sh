@@ -83,6 +83,6 @@ else
 fi
 
 # Copy and set the Plymouth theme
-sudo cp -r "$HOME/.local/share/omarchy/default/plymouth" /usr/share/plymouth/themes/omarchy/
+sudo cp -r "$HOME/.local/share/witchcraft/default/plymouth" /usr/share/plymouth/themes/witchcraft/
 
-sudo plymouth-set-default-theme -R omarchy
+sudo plymouth-set-default-theme -R witchcraft
