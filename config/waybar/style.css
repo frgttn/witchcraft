@@ -1,3 +1,5 @@
+@import "../../.cache/wal/colors-waybar.css";
+
 * {
   padding: 0;
   margin: 0;
@@ -7,94 +9,40 @@
 }
 
 window#waybar {
-  border-radius: 12px;
-  background-color: rgba(36, 39, 58, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 #cpu,
 #memory,
 #disk,
 #temperature {
-  font-size: 15px;
-  background: rgba(45, 48, 71, 0.9);
-  margin-top: 5px;
-  margin-bottom: 5px;
-  color: #cad3f5;
+  color: @foreground; 
+  margin-right: 8px;
 }
 
-#cpu {
-  color: #eed49f;
-  padding: 0px 10px 0px 12px;
-  border-radius: 5px 0px 0px 5px;
-}
-
-#memory {
-  color: #a6da95;
-  padding: 0px 0px 0px 0px;
-}
-
-#disk {
-  color: #7dc4e4;
-  padding: 0px 10px 0px 0px;
-}
-
-#temperature {
-  color: #ed8796;
-  padding: 0px 12px 0px 10px;
-  border-radius: 0px 5px 5px 0px;
-}
 
 #pulseaudio,
 #network,
 #bluetooth {
-  font-size: 15px;
-  background: rgba(45, 48, 71, 0.9);
-  margin-top: 5px;
-  margin-bottom: 5px;
-  color: #cad3f5;
+  color: @foreground; 
+  margin-right: 8px;
 }
 
-#pulseaudio {
-  color: #91d7e3;
-  padding: 0px 10px 0px 12px;
-  border-radius: 5px 0px 0px 5px;
-}
-
-#network {
-  color: #f5a97f;
-  padding: 0px 10px 0px 0px;
-  border-radius: 0px 0px 0px 0px;
-}
-
-#bluetooth {
-  color: #b7bdf8;
-  padding: 0px 12px 0px 0px;
-  border-radius: 0px 5px 5px 0px;
-}
 
 #custom-launcher {
   font-size: 20px;
-  color: #8aadf4;
+  color: @color12;
   padding: 0 15px 0 0;
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
 #custom-playerctl {
-  background-color: rgba(45, 48, 71, 0.9);
   margin-top: 5px;
   margin-bottom: 5px;
   border-radius: 5px;
-  padding: 0px 12px;
-  color: #cad3f5;
-}
-
-#hyprland-workspaces {
-  background-color: rgba(45, 48, 71, 0.9);
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border-radius: 5px;
-  padding: 0px 5px;
+  margin-left: 8px;
+  color: @foreground;
 }
 
 #workspaces button label,
@@ -107,130 +55,103 @@ window#waybar {
   padding: 0;
 }
 
+
 #workspaces button:nth-child(1) label {
-  color: #8aadf4;
+  color: @color12;
   margin: 0 8px;
 }
 
 #workspaces button:nth-child(2) label {
-  color: #ed8796;
+  color: @color1;
   margin: 0 8px;
 }
 
 #workspaces button:nth-child(3) label {
-  color: #a6da95;
+  color: @color2;
   margin: 0 8px;
 }
 
 #workspaces button:nth-child(4) label {
-  color: #c6a0f6;
+  color: @color5; 
   margin: 0 8px;
 }
 
 #workspaces button:nth-child(5) label {
-  color: #f4dbd6;
+  color: @color7; 
   margin: 0 8px;
 }
 
 #workspaces button:nth-child(6) label {
-  color: #f5a97f;
+  color: @color10;
   margin: 0 8px;
 }
 
 #workspaces button:nth-child(7) label {
-  color: #8bd5ca;
+  color: @color14;
   margin: 0 8px;
 }
 
 #workspaces button:nth-child(8) label {
-  color: #7dc4e4;
+  color: @color12; 
   margin: 0 8px;
 }
 
 #workspaces button:nth-child(9) label {
-  color: #b7bdf8;
+  color: @color13; 
   margin: 0 8px;
 }
 
 #workspaces button.active label {
-  color: #fab387;
+  color: @color2; 
 }
 
+
 #clock {
-  background-color: rgba(45, 48, 71, 0.9);
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border-radius: 5px;
-  padding: 0px 0px 0px 12px;
-  color: #cad3f5;
+  color: @foreground; 
 }
 
 #custom-dnd {
-  background-color: rgba(45, 48, 71, 0.9);
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border-radius: 5px;
-  padding: 0px 12px 0px 12px;
-  color: #cad3f5;
+  margin-right: 8px;
+  color: @foreground;
 }
 
 #tray {
-  background-color: rgba(45, 48, 71, 0.9);
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border-radius: 5px;
-  padding: 0px 12px 0px 12px;
-  color: #cad3f5;
+  color: @foreground; 
+  margin-right: 8px;
 }
 
-#custom-dnd {
-  background-color: rgba(45, 48, 71, 0.9);
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border-radius: 5px 0 0 5px;
-  padding: 0px 12px 0px 12px;
-  color: #cad3f5;
+#custom-dnd { 
+  color: @foreground; 
+  margin-right: 8px;
 }
 
 #power-profiles-daemon {
-  background-color: rgba(45, 48, 71, 0.9);
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border-radius: 0;
-  padding: 0 12px 0 0;
-  color: #cad3f5;
+  color: @foreground; 
+  margin-right: 8px;
 }
 
 #battery {
-  background-color: rgba(45, 48, 71, 0.9);
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border-radius: 0;
-  padding: 0;
-  color: #cad3f5;
+  color: @foreground; 
+  margin-right: 8px;
 }
 
 #custom-logout {
-  background-color: rgba(45, 48, 71, 0.9);
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border-radius: 0 5px 5px 0;
-  padding: 0px 12px 0px 12px;
-  color: #cad3f5;
+  color: @foreground;
+  margin-right: 8px;
 }
 
 #custom-uptime {
-  background-color: rgba(45, 48, 71, 0.9);
   margin-top: 5px;
   margin-bottom: 5px;
   border-radius: 5px;
   padding: 0px 12px;
-  color: #cad3f5;
+  color: @foreground; 
 }
+
 
 #custom-separator {
   background-color: transparent;
-  padding: 0px 5px;
+  padding: 0px 0px;
   margin: 0;
 }
 
@@ -239,34 +160,34 @@ window#waybar {
 }
 
 #custom-window-name {
-  color: #68b0d6;
+  color: @foreground;
   margin-right: 10px;
-  background-color: #1a1c2b;
+  background-color: @color0; 
 }
 
 #custom-right-arr {
-  color: #8aadf4;
-  background-color: #1a1c2b;
+  color: @foreground; 
+  background-color: @color0;
 }
 
 #custom-pacman {
-  color: #68b0d6;
-  background-color: #1a1c2b;
+  color: @foreground;
+  background-color: @color0;
 }
 
 #custom-dot {
-  color: #6e738d;
+  color: @foreground; 
   padding-right: 10px;
 }
 
 #custom-dot-alt {
-  color: #a5adcb;
+  color: @foreground; 
   padding-left: 10px;
   padding-right: 10px;
 }
 
 #custom-clock-icon {
-  color: #cad3f5;
+  color: @foreground; 
   padding-left: 10px;
   padding-right: 10px;
   margin-top: 5px;
@@ -275,7 +196,7 @@ window#waybar {
 }
 
 #custom-filler {
-  color: #6e738d;
+  color: @foreground;
   padding-left: 0px;
   padding-right: 9px;
   margin-top: 5px;
@@ -284,10 +205,14 @@ window#waybar {
 }
 
 #custom-filler2 {
-  color: #6e738d;
+  color: @foreground; 
   padding-left: 3px;
   padding-right: 9px;
   margin-top: 5px;
   margin-bottom: 5px;
   border-radius: 5px;
 }
+
+#custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward, #custom-playerlabel {
+	color: @foreground;
+}	

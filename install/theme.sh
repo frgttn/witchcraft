@@ -6,27 +6,28 @@ sudo pacman -S --noconfirm gnome-themes-extra # Adds Adwaita-dark theme
 gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
 
-# Setup theme links
-mkdir -p ~/.config/witchcraft/themes
-for f in ~/.local/share/witchcraft/themes/*; do ln -s "$f" ~/.config/witchcraft/themes/; done
-
-# Set initial theme
-mkdir -p ~/.config/witchcraft/current
-ln -snf ~/.config/witchcraft/themes/catppuccin ~/.config/witchcraft/current/theme
-
 # Set initial wallpaper
+mkdir -p ~/.config/witchcraft/current
 ln -snf ~/.local/share/witchcraft/backgrounds/1.png ~/.config/witchcraft/current/background
+wal -i ~/.config/witchcraft/current/background -t -s
 
 # Copy cursors
 cp -r ~/.local/share/witchcraft/cursors ~/.local/share/icons/
 
-# Set specific app links for current theme
-ln -snf ~/.config/witchcraft/current/theme/hyprlock.conf ~/.config/hypr/hyprlock.conf
-ln -snf ~/.config/witchcraft/current/theme/wofi.css ~/.config/wofi/style.css
-mkdir -p ~/.config/btop/themes
-ln -snf ~/.config/witchcraft/current/theme/btop.theme ~/.config/btop/themes/current.theme
-mkdir -p ~/.config/mako
-ln -snf ~/.config/witchcraft/current/theme/mako.ini ~/.config/mako/config
-mkdir -p ~/.config/bat/themes
-ln -snf ~/.config/witchcraft/current/theme/bat.tmTheme ~/.config/bat/themes/current.tmTheme
-bat cache --build
+# Copy colors for mako
+. "${HOME}/.cache/wal/colors.sh"
+
+MAKO_CONFIG="${HOME}/.config/mako/config"
+
+# Associative array, color name -> color code.
+declare -A colors
+colors=(
+    ["background-color"]="${background}89"
+    ["text-color"]="$foreground"
+    ["border-color"]="$color13"
+)
+
+for color_name in "${!colors[@]}"; do
+  # replace first occurance of each color in config file
+  sed -i "0,/^$color_name.*/{s//$color_name=${colors[$color_name]}/}" $MAKO_CONFIG
+done

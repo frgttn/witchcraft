@@ -1,9 +1,11 @@
 #!/bin/bash
 
-# Cycles through the background images available
+. "${HOME}/.cache/wal/colors.sh"
 
+# Cycles through the background images available
 BACKGROUNDS_DIR="$HOME/.local/share/witchcraft/backgrounds/"
 CURRENT_BACKGROUND_LINK="$HOME/.config/witchcraft/current/background"
+MAKO_CONFIG="${HOME}/.config/mako/config"
 
 BACKGROUNDS=($(find "$BACKGROUNDS_DIR" -type f | sort))
 TOTAL=${#BACKGROUNDS[@]}
@@ -29,9 +31,25 @@ done
 NEXT_INDEX=$(((INDEX + 1) % TOTAL))
 NEW_BACKGROUND=${BACKGROUNDS[$NEXT_INDEX]}
 
-# Set new background symlink
+# Set new background symlink for swaybg
 ln -nsf "$NEW_BACKGROUND" "$CURRENT_BACKGROUND_LINK"
 
 # Relaunch swaybg
 pkill -x swaybg
 setsid swaybg -i "$NEW_BACKGROUND" -m fill >/dev/null 2>&2 &
+wal -i "$NEW_BACKGROUND"
+
+# Associative array, color name -> color code.
+declare -A colors
+colors=(
+    ["background-color"]="${background}89"
+    ["text-color"]="$foreground"
+    ["border-color"]="$color13"
+)
+
+for color_name in "${!colors[@]}"; do
+  # replace first occurance of each color in config file
+  sed -i "0,/^$color_name.*/{s//$color_name=${colors[$color_name]}/}" $MAKO_CONFIG
+done
+
+makoctl reload
