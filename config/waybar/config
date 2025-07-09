@@ -1,222 +1,32 @@
 {
-  "include": "~/.config/waybar/configs/custom_modules/modules",
+  "include": "~/.config/waybar/modules",
   "layer": "top",
-  "height": 35,
-  "margin-top": 5,
-  "margin-left": 10,
-  "margin-bottom": 0,
-  "margin-right": 10,
-  "spacing": 0,
-  "reload_style_on_change": true,
+  "height": 40,
+  "spacing": 8,
   "modules-left": [
-    "custom/launcher",
     "custom/separator",
+    "hyprland/workspaces",
+    "custom/playerlabel",
+    "custom/playerctl#backward",
+    "custom/playerctl#play",
+    "custom/playerctl#forward"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "tray",
+    "pulseaudio",
+    "bluetooth",
+    "network",
     "cpu",
     "memory",
     "disk",
     "temperature",
-    "custom/separator",
-    "custom/playerctl"
-  ],
-  "modules-center": [
-    "hyprland/workspaces"
-  ],
-  "modules-right": [
-    "custom/separator",
-    "pulseaudio",
-    "network",
-    "bluetooth",
-    "custom/separator",
-    "tray",
-    "custom/separator",
-    "clock",
-    "custom/separator",
-    "custom/dnd",
     "power-profiles-daemon",
+    "custom/dnd",
     "battery",
-    "custom/logout"
-  ],
-  "custom/playerctl": {
-    "format": "[<span foreground='#46c880'>  </span> <span>{}</span> ]",
-    "return-type": "json",
-    "max-length": 55,
-    "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{title}}\"}' -F",
-    "on-click": "playerctl play-pause",
-    "on-click-middle": "playerctl previous",
-    "on-click-right": "playerctl next",
-    "format-icons": {
-      "Playing": "<span foreground='#46c880'>  </span>",
-      "Paused": "<span foreground='#cdd6f4'> 󰏥 </span>"
-    }
-  },
-  "custom/uptime": {
-    "format": " {}",
-    "interval": 30,
-    "exec": "$HOME/.local/bin/upt2",
-    "on-click": ""
-  },
-  "disk": {
-    "interval": 1,
-    "format": "<span color=\"#68b0d6\"> </span> {}%",
-    "on-click": "filelight /",
-    "on-click-right": "filelight /home/"
-  },
-  "hyprland/workspaces": {
-    "all-outputs": true,
-    "active-only": false,
-    "on-click": "activate",
-    "format": "{icon}",
-    "on-scroll-up": "hyprctl dispatch workspace e+1",
-    "on-scroll-down": "hyprctl dispatch workspace e-1",
-    "format-icons": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": "",
-      "5": "",
-      "6": "",
-      "7": "",
-      "8": "",
-      "9": "",
-      "urgent": "",
-      "active": "",
-      "default": ""
-    }
-  },
-  "tray": {
-    "icon-size": 16,
-    "spacing": 12
-  },
-  "clock": {
-    "interval": 1,
-    "format": "<b>{:%H:%M:%S }</b>",
-    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
-  },
-  "cpu": {
-    "interval": 10,
-    "format": " {usage}% ",
-    "max-length": 10,
-    "on-click": "alacritty -e btop"
-  },
-  "memory": {
-    "interval": 30,
-    "format": " {}% ",
-    "format-alt": " {used:0.1f}G",
-    "max-length": 10,
-    "on-click-right": "alacritty -e btop"
-  },
-  "temperature": {
-    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
-    "thermal-zone": 0,
-    "critical-threshold": 80,
-    "format-critical": " {temperatureC}°C",
-    "format": " {temperatureC}°C"
-  },
-  "network": {
-    "on-click": "alacritty --class=Impala -e impala",
-    "format-wifi": "󰒢 {essid}",
-    "format-ethernet": " wired",
-    "format-disconnected": "",
-    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-    "tooltip-format-disconnected": "Disconnected"
-  },
-  "bluetooth": {
-    "format": "",
-    "format-disabled": "󰂲",
-    "format-connected": "",
-    "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "GTK_THEME=Adwaita-dark blueberry"
-  },
-  "pulseaudio": {
-    "format": "{icon} <b>{volume}</b>",
-    "format-bluetooth": " {volume}",
-    "format-bluetooth-muted": " ",
-    "tooltip": false,
-    "format-muted": "󰝟",
-    "format-icons": {
-      "default": [
-        "󰝟",
-        "",
-        "󰕾",
-        ""
-      ]
-    },
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "on-click-right": "pavucontrol"
-  },
-  "battery": {
-    "interval": 60,
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
-    "format": "{capacity}%",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "max-length": 25
-  },
-  "power-profiles-daemon": {
-    "format": "{icon}",
-    "tooltip-format": "Power profile: {profile}",
-    "tooltip": true,
-    "format-icons": {
-      "power-saver": "󰡳",
-      "balanced": "󰊚",
-      "performance": "󰡴"
-    }
-  },
-  "custom/logout": {
-    "format": "󰐥",
-    "on-click": "wlogout -b 5 -B 400 -T 400",
-    "tooltip": "Log out"
-  },
-  "custom/dnd": {
-    "exec": "makoctl mode | grep -q 'do-not-disturb' && echo '{\"alt\":\"dnd\",\"tooltip\":\"Enable notifications\"}' || echo '{\"alt\":\"on\",\"tooltip\":\"Disable notifications\"}'",
-    "format": "{icon}",
-    "format-icons": {
-      "on": " 󰂚",
-      "dnd": "󰂛"
-    },
-    "return-type": "json",
-    "interval": 5,
-    "tooltip": "{tooltip}",
-    "on-click": "makoctl mode -t do-not-disturb"
-  },
-  "custom/launcher": {
-    "format": " 󰣇",
-    "on-click": "alacritty -e /bin/sh -c 'fastfetch; read -p \"\"'"
-  },
-  "custom/window-name": {
-    "format": " <b>{}</b>",
-    "interval": 1,
-    "exec": "hyprctl activewindow | grep class | awk '{print $2}'"
-  },
-  "custom/separator": {
-    "format": " "
-  },
-  "custom/right-arr": {
-    "format": "  "
-  },
-  "custom/filler": {
-    "format": " "
-  },
-  "custom/dot": {
-    "format": " "
-  },
-  "custom/clock-icon": {
-    "format": ""
-  },
-  "custom/window-icon": {},
-  "custom/wrap-left": {
-    "format": "<b>[</b>"
-  },
-  "custom/wrap-right": {
-    "format": "<b>]</b>"
-  }
+    "custom/logout",
+    "custom/separator"
+  ]
 }
