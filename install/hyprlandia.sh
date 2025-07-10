@@ -1,5 +1,5 @@
 paru -S --noconfirm --needed \
-  hyprland hyprshot hyprpicker hyprlock hypridle hyprland-qtutils \
+  hyprland hyprshot hyprpicker hyprlock hypridle hyprland-qtutils polkit-gnome \
   wofi waybar mako swaybg wlogout python-pywal16 \
   xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
 
